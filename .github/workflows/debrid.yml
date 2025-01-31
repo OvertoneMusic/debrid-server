@@ -1,0 +1,26 @@
+name: Run Free VPS + RapidLeech
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update && sudo apt install apache2 php php-curl unzip git -y
+          cd /var/www/html
+          sudo git clone https://github.com/Th3-822/rapidleech.git
+          sudo chown -R www-data:www-data rapidleech
+          sudo systemctl restart apache2
+
+      - name: Keep Alive (Prevents Auto Shutdown)
+        run: sleep 3600
