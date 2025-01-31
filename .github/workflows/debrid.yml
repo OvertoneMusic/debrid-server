@@ -23,4 +23,4 @@ jobs:
           sudo systemctl restart apache2
 
       - name: Keep Alive (Prevents Auto Shutdown)
-        run: sleep 3600
+        run: sleep 600
