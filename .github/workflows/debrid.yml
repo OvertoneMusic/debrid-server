@@ -22,5 +22,8 @@ jobs:
           sudo chown -R www-data:www-data rapidleech
           sudo systemctl restart apache2
 
+      - name: Show Public IP Address
+        run: curl ifconfig.me
+
       - name: Keep Alive (Prevents Auto Shutdown)
-        run: sleep 600
+        run: sleep 600  # Changed from 3600 to 600 (10 minutes)
